@@ -3,8 +3,7 @@
  */
 package FFSSM;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Club {
 
@@ -17,10 +16,20 @@ public class Club {
 
     public String telephone;
 
-    public Club(Moniteur président, String nom, String telephone) {
+    public ArrayList<Licence> licencesDelivrees;
+
+    public ArrayList<Embauche> employes;
+
+    public ArrayList<Plongee> activites;
+
+    public Club(Moniteur président, String nom, String adresse, String telephone) {
         this.president = président;
         this.nom = nom;
+        this.adresse = adresse;
         this.telephone = telephone;
+        this.licencesDelivrees = new ArrayList<Licence>();
+        this.employes = new ArrayList<Embauche>();
+        this.activites = new ArrayList<Plongee>();
     }
 
     /**
@@ -30,8 +39,13 @@ public class Club {
      * @return l'ensemble des plongées non conformes
      */
     public Set<Plongee> plongeesNonConformes() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        Set<Plongee> tmp = new HashSet<Plongee>();
+        for(Plongee p : this.activites){
+            if(!(p.estConforme())){
+                tmp.add(p);
+            }
+        }
+        return tmp;
     }
 
     /**
@@ -39,8 +53,7 @@ public class Club {
      * @param p la nouvelle plongée
      */
     public void organisePlongee(Plongee p) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        this.activites.add(p);
     }
     
     
@@ -79,6 +92,10 @@ public class Club {
     @Override
     public String toString() {
         return "Club{" + "président=" + president + ", nom=" + nom + ", adresse=" + adresse + ", telephone=" + telephone + '}';
+    }
+
+    public void addToLicenceDelivrees(Licence l){
+        this.licencesDelivrees.add(l);
     }
 
 }

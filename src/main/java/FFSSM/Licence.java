@@ -4,6 +4,7 @@
 package FFSSM;
 
 import java.time.LocalDate;
+import java.util.*;
 
 public class Licence {
 
@@ -15,11 +16,14 @@ public class Licence {
 
     public Club club;
 
+    public ArrayList<Plongee> plongees;
+
     public Licence(Personne possesseur, String numero, LocalDate delivrance, Club club) {
         this.possesseur = possesseur;
         this.numero = numero;
         this.delivrance = delivrance;
         this.club = club;
+        this.plongees = new ArrayList<Plongee>();
     }
 
     public Personne getPossesseur() {
@@ -45,8 +49,21 @@ public class Licence {
      * @return vrai si valide à la date d
      **/
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        if(d.isBefore(this.getDelivrance().plusYears(1))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    // Ajoute la licence dans la liste des licencesDelivrees par le club
+    public void addToClub(){
+        this.getClub().addToLicenceDelivrees(this);
+    }
+
+    public void addToListePlongee(Plongee p){
+        this.plongees.add(p);
     }
 
 }
