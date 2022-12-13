@@ -40,6 +40,7 @@ public class TestClub {
 
         int i = c.plongeesNonConformes().size();
         assertEquals(1, i);
+        assertTrue(c.plongeesNonConformes().contains(pe));
     }
 
     @Test
@@ -47,6 +48,4 @@ public class TestClub {
         c.setPresident(pre);
         assertEquals(pre, c.getPresident());
     }
-
-
 }

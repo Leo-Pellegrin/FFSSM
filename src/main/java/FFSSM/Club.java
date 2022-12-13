@@ -55,7 +55,10 @@ public class Club {
     public void organisePlongee(Plongee p) {
         this.activites.add(p);
     }
-    
+
+    public void addEmbauche(Embauche e){
+        this.employes.add(e);
+    }
     
     public Moniteur getPresident() {
         return president;
